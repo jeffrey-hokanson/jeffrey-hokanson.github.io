@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jeffrey M. Hokanson</title>
+		<script
+			src="https://code.jquery.com/jquery-3.1.1.min.js"
+			integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+			crossorigin="anonymous">
+		</script>
+		<!--	<script src="semantic/dist/semantic.min.js"></script> -->
+		<link href='https://fonts.googleapis.com/css?family=Lora|Open+Sans' rel='stylesheet'>
+		<link rel="stylesheet" type="text/css" href="semantic-ui/semantic.min.css">
+		<script src="semantic-ui/semantic.min.js"></script>
+	
+		<!-- Setup MathJax -->	
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+  				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+				messageStyle: "none",
+			});
+		</script>
+		<script type="text/javascript" async
+			src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+		</script>
+	</head>
+	<body>
+		<div style="visibility:hidden">
+			$
+			\newcommand{\R}{\mathbb{R}} 
+			\newcommand{\C}{\mathbb{R}} 
+			\newcommand{\ve}[1]{{\boldsymbol{\mathbf{#1}}}} 
+			\newcommand{\trans}{\top} 
+			\newcommand{\ma}[1]{\ve{#1}}
+			\newcommand{\tve}[1]{{\widetilde{\boldsymbol{\mathbf{#1}}}}}
+			\DeclareMathOperator*{\minimize}{minimize}
+			\newcommand{\set}[1]{{\mathcal{#1}}}
+			$
+		</div>
+		<div class="ui main text container">
+			<div class="ui segments">
+			<div class="ui clearing segment">
+				<div class="ui items">
+					<div class="item">
+						<div class="ui small image"><img src="face.jpg"></div>
+						<div class="content">
+							<div class="header"> <h1 class="ui header">Jeffrey M. Hokanson</h1></div>
+							<div class="description">
+								<div class="ui list">
+									<div class="item"><i class="user outline icon"></i>
+										<div class="content">Postdoctoral fellow with <a href="https://inside.mines.edu/~pconstan/">Paul G. Constantine</a> </div>
+									</div>
+									<div class="item">  <i class="building outline icon"></i>
+										<div class="content"><a href="http://ams.mines.edu/">Department of Applied Mathematics and Statistics</a> </div>
+									</div>
+									<div class="item"> <i class="university icon"></i>
+										<div class="content"><a href="http://www.mines.edu/">Colorado School of Mines</a> </div>
+									</div>
+									<div class="item"> <i class="mail outline icon"></i>
+										<div class="content"><a href="mailto:hokanson@mines.edu">hokanson@mines.edu</a> </div>
+									</div>
+									<div class="item"> <i class="file text outline icon"></i>
+										<div class="content"><a href="cv.pdf">Curriculum vitae</a> </div>
+									</div>
+								</div><!-- end list -->
+							</div> <!-- end description -->
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>	
+			<div class="ui menu">
+				<a class="item" href="#research">Research interests</a>
+				<a class="item" href="#publications">Publications</a>
+				<a class="item" href="#lab">Applied Math Lab</a>
+			</div>
+			<!-- Statement -->
+			<div class="ui clearing segment">
+				<h2 class="ui header" id="research">Research interests</h2>
+				<p>	
+					I am an applied mathematician interested in the application of optimization to problems in 
+					system identification and design under uncertainty.
+					My current work with Paul focuses on constructing ridge approximations of expensive quantities of interest
+					using only function values and then exploiting the structure of these approximations to solve chance constrainted
+					design problems.
+					My thesis work centered on solving a large nonlinear least squares problem by projecting onto a low-dimensional
+					subspace of the measurements.
+					I am currently working on extending this projection approach to other nonlinear least squares problems.
+				</p>
+			</div>
+			
+			<div class="ui clearing segment">
+				<h2 class="ui header" id="publications"> Publications</h2>
+				<div class="ui divided items">
+					<div class="item">
+						<div class="ui small image"> <img src="varproridge.png"></div>
+						<div class="content">
+							<div class="ui header"> 
+								Data-driven polynomial ridge approximation using variable projection
+								<div class="sub header">Jeffrey M. Hokanson and <a href="http://inside.mines.edu/~pconstan">Paul G. Constantine</a></div>
+							</div>
+							<div class="meta">
+								<a class="ui label" href="https://arxiv.org/abs/1702.05859">arXiv</a>
+								<a class="ui label" href="https://github.com/jeffrey-hokanson/varproridge">Code</a> 
+							</div>
+							<div class="description">
+								<p> A ridge approximation mimics a scalar function of many variables
+									$f: \R^m\to \R$
+									by another function $g:\R^n \to \R$ of a few linear combinations of inputs 
+									such that
+									$$ f(\ve x) \approx g(\ma U^\trans \ve x) 
+										\quad \ma U\in \R^{m\times n} 
+										\quad \ma U^\trans \ma U = \ma I.
+									$$
+									In this paper we find the ridge function $g$ and the subspace spanned by $\ma U$ 
+									by minimizing the 2-norm mismatch between $f(\ve x_i)$ and $g(\ma U^\trans \ve x_i)$
+									over a user provided set of points $\lbrace \ve x_i\rbrace_{i=1}^N$.
+									By assuming $g$ is a multidimensional polynomial, we can implicitly solve for the coefficients
+									using <a href="http://dx.doi.org/10.1137/0710036">variable projection</a>
+									and solve the remaining optimization problem over the Grassmann manifold of 
+									$n$-dimensional subspaces of $\R^m$. 
+									The resulting algorithm allows for the rapid construction of ridge approximations
+									using only function values.
+								</p> 
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ui small image"> <img src="expfit.png"></div>
+						<div class="content">
+							<div class="ui header"> 
+								Projected nonlinear least squares for exponential fitting
+								<div class="sub header">Jeffrey M. Hokanson</div>
+							</div>
+							<div class="meta">
+								<a class="ui label" href="https://arxiv.org/abs/1702.05859">arXiv</a>
+								<!-- <a class="ui label" href="https://github.com/jeffrey-hokanson/varproridge">code</a> --> 
+							</div>
+							<div class="description">
+								<p> The exponential fitting problem seeks to minimize the mismatch between 
+								a noisy vector of measurements $\tve y\in \R^n$ and a sum of complex exponentials 
+								in a least squares sense:
+								$$
+									\minimize_{\ve \omega, \ve a\in \C^p} \| \ve f(\ve\omega, \ve a) - \tve y\|_2^2
+									\qquad [\ve f(\ve\omega, \ve a)]_k = \sum_{j=1}^p a_j e^{\omega_j k}.
+								$$
+								To speed optimization when vast quantities of data are present, 
+								we project the problem onto a low dimensional subspace
+								$$ 	
+									\|\ma W \ma W^*\ve f(\ve\omega, \ve a) - \ma W^*\tve y\|_2^2=
+									\|\ma W^*\ve f(\ve\omega, \ve a) - \ma W^*\tve y\|_2^2,
+									\quad \ma W^*\ma W = \ma I.
+								$$
+								By a careful selection of $\ma W$ that allows us to efficiently evaluate $\ma W^*\ve f(\ve\omega, \ve a)$
+								we are able to outperform subspace-based approaches for exponential fitting.
+								</p> 
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ui small image"> <img src="bead.png"></div>
+						<div class="content">
+							<div class="ui header"> 
+								One can hear the composition of a string: 
+								experiments with an inverse eigenvalue problem
+								<div class="sub header">
+									<a href="http://www.caam.rice.edu/~cox/">Steven J. Cox</a>, 
+									<a href="http://www.math.vt.edu/people/embree/">Mark Embree</a>, 
+									and Jeffrey M. Hokanson
+								</div>
+							</div>
+							<div class="meta">
+								<a class="ui label" href="http://dx.doi.org/10.1137/080731037">SIAM Review 54 (2012) 157-178.</a>
+								<a class="ui label" href="CEH12.pdf">PDF</a>
+								<a class="ui label" href="http://www.caam.rice.edu/~beads">Data</a>
+							</div>
+							<div class="description">
+								<p>
+									An inverse eigenvalue problem seeks to infer properties of a system through its eigenvalues.
+									A classic example is Kac's question:
+									<a href="http://dx.doi.org/10.2307/2313748">Can one hear the shape of a drum?</a>;
+									the answer turns out to be <a href="http://dx.doi.org/10.1007/BF01231320">no in two dimensions</a>.
+									In this paper we develop a version of this problem accessible to undergraduates in a matrix analysis
+									course.
+									Here we consider the case of a beaded string where the beads are symmetrically distributed around
+									the mid-point of the string. 
+									Using classical results of Gantmacher, Krein, and others,
+									we develop an algorithm to recover the masses and locations of these beads
+									given the resonant frequencies of the beaded string.
+									We apply this algorithm to datasets generated from an actual beaded string.
+									This example is used as component of a teaching lab suitable for juniors and above. 
+								</p> 
+							</div>
+						</div>
+					</div>
+				</div> <!-- end papers -->
+			</div>
+			<div class="ui clearing segment">
+				<h2 class="ui header" id="lab">Applied Math Laboratory</h2>
+				<p> During the summer of 2007 I was supported by a Brown teaching grant to help build 
+					a <a href="http://www.caam.rice.edu/~caam335lab/">teaching laboratory</a>
+					to accompany the CAAM department's undergraduate linear algebra class.
+					Together with Steve Cox and Mark Embree I helped devise the experiments and built the accompanying apparatus.
+					Below, I highlight a few of these experiments.
+				</p>
+				<div class="ui divided items">
+					<div class="item">
+						<div class="ui small image">
+							<img src="force_table.jpg">
+						</div>
+						<div class="content">
+							<div class="ui header">Force table</div>
+							<div class="description">
+								<p> 
+									As part of labs 3 and 4, the students would work with a spring network
+									resembling problems in the 
+									<a href="http://www.caam.rice.edu/~cox/LAIS/LAISChap1.pdf">course textbook</a>.
+									In lab 3, the students would verify the forward problem:
+									knowing the stiffnesses of the springs, the topology, and the applied loads
+									they would compute the expected displacement and check that it matched the model.
+									In lab 4, the students would solve the inverse problem:
+									knowing the topology of the spring network and the displacements
+									they would attempt to infer stiffness of each spring.
+								</p>
+							</div>
+						</div>
+					</div> 
+					<div class="item">
+						<div class="ui small image">
+							<!-- <a href="https://youtu.be/ICMIDHdq6g4"> -->
+							<video width="150" autoplay loop=true>
+								<source src="multiple_pendula.mp4" type="video/mp4">
+								<img src="multiple_pendula.gif">
+							</video>
+							<!--</a>-->
+						</div>
+						<div class="middle aligned content">
+							<div class="ui header">Multiple pendula</div>
+							<div class="description">
+								<p> 
+									In lab 8, the students would recreate the 1733 experiment of 
+									<a href="https://en.wikipedia.org/wiki/Daniel_Bernoulli">Daniel Bernoulli</a>
+									illustrating the superposition of eigenfunctions on a multiple pendula.
+									First the students would displace the each of the masses in an eigenvector,
+									and observe that the motion was always a scalar mulitple of the initial displacement.
+									Then the students displace the masses randomly and measure their displacement
+									as a function of time using video tracking software.
+									By taking the discrete Fourier transform of this displacement
+									the students would note the same three resonant frequencies of the pendula
+									seen when the masses were displaced in an eigenvector configuration.
+								</p>
+							</div>
+						</div>
+					</div> 
+					<div class="item">
+						<div class="ui small image">
+							<img src="bead_only.jpg">
+						</div>
+						<div class="content">
+							<div class="ui header">Beaded string</div>
+							<div class="description">
+								<p> In labs 9 and 10 the students would work with a beaded string.
+									In the first lab, the students would study the forward problem:
+									placing beads on the string knowing their displacement and mass
+									and verify the eigenvalues of the string matched a discrete model
+									In the second lab, the students would place the beads symmetrically 
+									around the mid-point of the string and estimate the masses and location of the beads
+									from the measured eigenvalues. 
+								<!--This apparatus was a modification
+								<a href="http://www.caam.rice.edu/~strings/">Physics of Strings</a> seminar.
+								-->
+								</p>
+							</div>
+						</div>
+					</div> 
+					<!--
+					<div class="item">
+						<div class="ui small image">
+							<img src="resistor_ladder.jpg">
+						</div>
+						<div class="content">
+							<div class="ui header">Resistor ladder</div>
+							<div class="description">
+								<p> In the small displacement limit, a multiple pendula
+								</p>
+							</div>
+						</div>
+					</div>
+					--> 
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
