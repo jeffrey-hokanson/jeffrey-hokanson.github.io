@@ -92,10 +92,40 @@
 				<h2 class="ui header" id="publications"> Selected Publications &amp Preprints</h2>
 				<div class="ui divided items">
 					<div class="item">
+						<div class="ui small image"> <img src="mcmillan.png"></div>
+						<div class="content">
+							<div class="ui header"> 
+								A Data-driven McMillan Degree Lower Bound
+								<div class="sub header">Jeffrey M. Hokanson</div>
+							</div>
+							<div class="meta">
+								<a class="ui label" href="#">arXiv</a>
+								<a class="ui label" href="https://github.com/jeffrey-hokanson/McMillanDegree">Code</a> 
+							</div>
+							<div class="description">
+								<p> Given measurements of a linear time-invariant system,
+									the McMillan degree is the dimension of the smallest such system that reproduces these observed dynamics.
+									When given impulse response measurements $\lbrace y_j \rbrace_{j=0}^{n-1}$
+									of the system $\lbrace \ma A, \ve c, \ve x_0\rbrace$,
+									$$ y_j := \ve c^* \ve x_j \quad \ve x_{j+1} := \ma A \ve x_j $$
+									the McMillan degree is the rank of the Hankel matrix $\ma H$ built from $\lbrace y_j \rbrace_{j=0}^{n-1}$:
+									$$ \ma H = \begin{bmatrix} y_0 & y_1 & \cdots & y_{m-1} \\
+											y_1 & y_2 & \cdots & y_m \\
+										\vdots &\vdots & & \vdots \\ 
+										y_{n-m-1} & y_{n-m} &\cdots & y_{n-1}
+									\end{bmatrix}. $$ 
+									However if $\lbrace y_j \rbrace_{j=0}^{n-1}$ is contaminated by noise, this matrix is almost surely full rank.
+									In this paper we introduce a new upper bound on the rank of a random Hankel matrix
+									and use this bound to construct a lower bound of the McMillan degree.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="item">
 						<div class="ui small image"> <img src="varproridge.png"></div>
 						<div class="content">
 							<div class="ui header"> 
-								Data-driven polynomial ridge approximation using variable projection
+								Data-driven Polynomial Ridge Approximation Using Variable Projection
 								<div class="sub header">Jeffrey M. Hokanson and <a href="http://inside.mines.edu/~pconstan">Paul G. Constantine</a></div>
 							</div>
 							<div class="meta">
@@ -129,7 +159,7 @@
 						<div class="ui small image"> <img src="expfit.png"></div>
 						<div class="content">
 							<div class="ui header"> 
-								Projected nonlinear least squares for exponential fitting
+								Projected Nonlinear Least Squares for Exponential Fitting
 								<div class="sub header">Jeffrey M. Hokanson</div>
 							</div>
 							<div class="meta">
@@ -163,8 +193,8 @@
 						<div class="ui small image"> <img src="bead.png"></div>
 						<div class="content">
 							<div class="ui header"> 
-								One can hear the composition of a string: 
-								experiments with an inverse eigenvalue problem
+								One Can Hear the Composition of a String: 
+								Experiments with an Inverse Eigenvalue Problem
 								<div class="sub header">
 									<a href="http://www.caam.rice.edu/~cox/">Steven J. Cox</a>, 
 									<a href="http://www.math.vt.edu/people/embree/">Mark Embree</a>, 
