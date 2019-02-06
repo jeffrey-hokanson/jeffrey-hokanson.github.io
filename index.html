@@ -34,6 +34,7 @@
 			\newcommand{\tve}[1]{{\widetilde{\boldsymbol{\mathbf{#1}}}}}
 			\DeclareMathOperator*{\minimize}{minimize}
 			\newcommand{\set}[1]{{\mathcal{#1}}}
+			\DeclareMathOperator*{\argmin}{argmin}
 			$
 		</div>
 		<div class="ui main text container">
@@ -47,7 +48,9 @@
 							<div class="description">
 								<div class="ui list">
 									<div class="item"><i class="user outline icon"></i>
-										<div class="content">Research Associate with <a href="https://www.colorado.edu/cs/paul-constantine">Paul G. Constantine</a> </div>
+										<div class="content">Postdoctoral Fellow with 
+											<a href="https://www.colorado.edu/cs/paul-constantine">Paul G. Constantine</a> 
+										</div>
 									</div>
 									<div class="item">  <i class="building outline icon"></i>
 										<div class="content"><a href="http://www.colorado.edu/cs/">Department of Computer Science</a> </div>
@@ -60,6 +63,11 @@
 									</div>
 									<div class="item"> <i class="file text outline icon"></i>
 										<div class="content"><a href="cv.pdf">Curriculum vitae</a> </div>
+									</div>
+									<div class="item"> <i class="google text outline icon"></i>
+										<div class="content">
+											<a href="https://scholar.google.com/citations?user=u-uqjuUAAAAJ">Google Scholar Profile</a> 
+										</div>
 									</div>
 								</div><!-- end list -->
 							</div> <!-- end description -->
@@ -91,6 +99,46 @@
 			<div class="ui clearing segment">
 				<h2 class="ui header" id="publications"> Selected Publications &amp Preprints</h2>
 				<div class="ui divided items">
+
+					<div class="item">
+						<div class="ui small image"> <img src="ph2.png"></div>
+						<div class="content">
+							<div class="ui header"> 
+								$\mathcal{H}_2$-Optimal Model Reduction Using Projected Nonlinear Least Squares
+								<div class="sub header">Jeffrey M. Hokanson and 
+									<a href="http://math.tufts.edu/people/facultyMagruder.htm">Caleb C. Magruder</a>
+								</div>
+							</div>
+							<div class="meta">
+								<a class="ui label" href="https://arxiv.org/abs/1811.11962">arXiv</a>
+								<a class="ui label" href="https://github.com/jeffrey-hokanson/MOR">Code</a> 
+							</div>
+							<div class="description">
+								<p> Given access to the transfer function of a linear time-invariant system $H$,
+									model reduction seeks to construct a reduced order model $H_r$ that emulates 
+									the dynamics of the full order model.
+									Commonly these reduced order models are choosen to have a real, stable, finite-dimensional state-space form
+									and hence their transfer functions are proper rational functions of degree $r$ whose poles
+									are in the left-half plane; i.e., $H_r \in \mathcal{R}_r(\mathbb{R})^+$.
+									$\mathcal{H}_2$-optimal model reduction seeks the reduce order model that minimizes 
+									the $\mathcal{H}_2$-norm: 
+									$$ \min_{H_r\in \mathcal{R}_r^+(\mathbb{R})} \| H - H_r \|_{\mathcal{H}_2}^2,
+										\qquad \| F \|_{\mathcal{H}_2}^2 = \int_{-\infty}^\infty |F(i\omega)|^2 \mathrm{d}\omega.
+									$$
+									By exploiting the Hilbert space structure of this norm, 
+									we are able to construct an efficient algorithm that solves the $\mathcal{H}_2$-optimal 
+									model order reduction problem by projecting onto a sequence of finite dimensional subspaces,
+									each yielding a least squares rational approximation problem
+									$$ 
+										H_r^{\ve\mu^{(k)}} = 
+										\argmin_{H_r\in \mathcal{R}_r^+(\mathbb{R})} \| P(\ve\mu_k) [H - H_r]\|_{\mathcal{H}_2}^2.
+									$$ 
+								</p>
+							</div>
+						</div>
+					</div>
+
+
 					<div class="item">
 						<div class="ui small image"> <img src="mcmillan.png"></div>
 						<div class="content">
@@ -129,7 +177,8 @@
 								<div class="sub header">Jeffrey M. Hokanson and <a href="http://inside.mines.edu/~pconstan">Paul G. Constantine</a></div>
 							</div>
 							<div class="meta">
-								<a class="ui label" href="#">Accepted @ SIAM J. Sci. Comput.</a>
+								<a class="ui label" href="https://doi.org/10.1137/17M1117690">SIAM J. Sci. Comput. 40(3) A1566-A1589, 2018</a>
+								<a class="ui label" href="M111769.pdf">PDF</a>
 								<a class="ui label" href="https://arxiv.org/abs/1702.05859">arXiv</a>
 								<a class="ui label" href="https://github.com/jeffrey-hokanson/varproridge">Code</a> 
 							</div>
