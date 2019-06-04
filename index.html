@@ -92,6 +92,7 @@
 			<div class="ui menu">
 				<a class="item" href="#research">Research Interests</a>
 				<a class="item" href="#publications">Publications &amp Preprints</a>
+				<a class="item" href="#software">Software</a>
 				<a class="item" href="#lab">Applied Math Lab</a>
 			</div>
 			<!-- Statement -->
@@ -328,6 +329,78 @@
 					</div>
 				</div> <!-- end papers -->
 			</div>
+			<div class="ui clearing segment">
+				<h2 class="ui header" id="software">Software</h2>
+				<div class="ui divided items">
+					<div class="item">
+						<div class="content">
+							<div class="ui header">Parameter Space Dimension Reduction</div>
+							<div class="meta"> 
+								<a class="ui label" href="https://github.com/jeffrey-hokanson/PSDR">Source</a>
+								<a class="ui label" href="https://psdr.readthedocs.io/en/latest/">Documentation</a>
+								<a class="ui label" href="https://travis-ci.org/jeffrey-hokanson/PSDR">CI Testing</a>
+								<a class="ui label" href="https://coveralls.io/github/jeffrey-hokanson/PSDR?branch=master">Coverage</a>
+							</div>
+							<div class="description">
+								The goal of parameter space dimension reduction is to provide a reduced set of coordinates
+								to approximately describe a function.
+								Specifically, given a scalar-valued function $f:\set D \subset \R^m \to \R$,
+								we seek to find a surjective map $h:\set D\to \R^n$ where $n\ll m$ such that
+								$$ f(\ve x) \approx g(h(\ve x)) \quad \forall \ve x \in \set D, \ g:\R^n\to \R.$$
+								By identifying $h$ mapping to a lower dimensional space, 
+								the complexity of approximating $f$ no longer grows exponentially in input dimension $m$.
+								This package includes:
+								<table class="ui table"><tbody>
+									<tr>
+									<td> dimension reduction techniques</td>
+									<td>
+										<div class="ui horizontal bulleted list">
+											<a class="item" href="https://psdr.readthedocs.io/en/latest/subspace.html#lipschitz-matrix">
+												Lipschitz matrix
+											</a>
+											<a class="item" href="https://psdr.readthedocs.io/en/latest/subspace.html#psdr.ActiveSubspace">
+												average outer product of gradients 
+											</a>
+										</div>
+									</td>
+									</tr>
+									<tr>
+									<td>response surfaces</td>
+									<td>
+										<div class="ui horizontal bulleted list">
+											<a class="item" href="https://psdr.readthedocs.io/en/latest/surrogate.html#psdr.PolynomialRidgeApproximation">
+												polynomial ridge approximation
+											</a>
+											<a class="item" href="https://psdr.readthedocs.io/en/latest/surrogate.html#psdr.GaussianProcess">
+												Gaussian process
+											</a>
+										</div>
+									</td>
+									</tr>
+									<tr>
+									<td>test problems</td>
+									<td>
+										<div class="ui horizontal bulleted list">
+											<a class="item" href="https://psdr.readthedocs.io/en/latest/surrogate.html#psdr.demos.NACA0012">
+												NACA0012
+											</a>
+											<a class="item" href="https://psdr.readthedocs.io/en/latest/demos.html#psdr.demos.MULTIF">
+												MULTI-F
+											</a>
+											<a class="item" href="https://psdr.readthedocs.io/en/latest/surrogate.html#psdr.demos.Borehole">
+												borehole
+											</a>
+										</div>
+									</td>
+									</tr>
+								</tbody></table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 			<div class="ui clearing segment">
 				<h2 class="ui header" id="lab">Applied Math Laboratory</h2>
 				<p> During the summer of 2007 I was supported by a Brown teaching grant to help build 
