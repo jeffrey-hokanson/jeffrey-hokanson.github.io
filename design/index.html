@@ -17,12 +17,17 @@
 
 	<div class="ui main text container">
 
-		<div class="ui two top attached buttons">
-			<div class="ui button"><i class="angle left icon"></i></div>
-			<div class="ui button"><i class="angle right icon"></i></div>
+		<div class="ui attached three item menu">
+			<div class="ui button" id="decrease"><i class="angle left icon"></i></div>
+			<div class="ui input"> <input type="number" placeholder="40" id = "goto"></div>
+			<div class="ui button" id="increase"><i class="angle right icon"></i></div>
 		</div>
 		<div class="ui attached segment">
 		<table class="ui definition table">
+			<colgroup>
+			   <col span="1" style="width: 15%;">
+			   <col span="1" style="width: 70%;">
+			</colgroup>
 			<tbody>
 				<tr>
 					<td> M </td>
@@ -45,6 +50,7 @@
 	</div>
 
 	<script>
+		var M = 40;
 		// Grab the element with the plot
 		var svg = d3.select("#design_plot");
 		
@@ -64,7 +70,9 @@
 
 
 		function draw_design(design){
-			
+		
+			svg.selectAll("circle").remove();
+	
 			svg.selectAll("disk")
 				.data(design["X"])
 				.enter()
@@ -91,9 +99,37 @@
 			$("#author").html(design["author"]);
 		}
 
+		function load_square(M, callback){
+			var url = "".concat("https://raw.githubusercontent.com/jeffrey-hokanson/ExperimentDesigns/master/designs/minimax/l2/square_", M.toString().padStart(4,'0'), ".json");
+			console.log(url);
+			d3.json(url).then(callback);	
+		}
 
-		d3.json("https://raw.githubusercontent.com/jeffrey-hokanson/ExperimentDesigns/master/designs/minimax/l2/square_0050.json")
-			.then(draw_design);
+
+		// Load default
+		load_square(M, draw_design);
+
+		$("#decrease").click(function(){
+			if (M >= 2){
+				M = M-1;
+				load_square(M, draw_design);
+				$("#goto").attr("placeholder", M.toString()).val("").focus().blur();
+			}
+		})	
+		$("#increase").click(function(){
+			if (M < 50){
+				M = M+1;
+				load_square(M, draw_design);
+				$("#goto").attr("placeholder", M.toString()).val("").focus().blur();
+			}
+		})	
+		$("#goto").on("input", function(){
+			var M_new = parseInt($(this).val());
+			if (M_new >= 1 & M_new <= 50){
+				M = M_new;
+			}
+			load_square(M, draw_design);
+		})
 
 	</script>
 </body>
