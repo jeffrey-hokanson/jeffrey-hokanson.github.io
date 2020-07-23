@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+	
+<head>
+	<title>Jeffrey M. Hokanson</title>
+	<script src="https://d3js.org/d3.v5.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+</head>
+
+
+<body>
+	<h1 class="ui center aligned header">Minimax Spacefilling Designs</h1>
+
+	<div class="ui main text container">
+
+		<div class="ui two top attached buttons">
+			<div class="ui button"><i class="angle left icon"></i></div>
+			<div class="ui button"><i class="angle right icon"></i></div>
+		</div>
+		<div class="ui attached segment">
+		<table class="ui definition table">
+			<tbody>
+				<tr>
+					<td> M </td>
+					<td id="Mpoints"> </td>
+				</tr>
+				<tr>
+					<td> radius </td>
+					<td id="radius"> </td>
+				</tr>
+				<tr>
+					<td> Author </td>
+					<td id="author"> </td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<div class="ui center aligned container">
+			<svg id="design_plot" height=500 width=500></svg>
+		</div>
+	</div>
+
+	<script>
+		// Grab the element with the plot
+		var svg = d3.select("#design_plot");
+		
+		// Setup the scale for the domain
+		var x = d3.scaleLinear()
+			.domain([-0.25,1.25])
+			.range([0,500]);
+		
+		// Draw bounding box for the domain
+		svg.append("rect")
+			.attr("x", x(0))
+			.attr("y", x(0))
+			.attr("width", x(1) - x(0))
+			.attr("height",x(1) - x(0))
+			.style("fill", "#bdbdbd")
+			.style("fill-opacity",1);
+
+
+		function draw_design(design){
+			
+			svg.selectAll("disk")
+				.data(design["X"])
+				.enter()
+				.append("circle")
+					.attr("cx", function(d){ return x(d[0])})
+					.attr("cy", function(d){ return x(d[1])})
+					.attr("r", x(design["radius"]) - x(0) )
+					.attr("stroke", "#377eb8")
+					.attr("stroke-width", 1)
+					.style("fill", "#377eb8")
+					.style("fill-opacity", 0.4);
+			
+			svg.selectAll("xhat")
+				.data(design["X"])
+				.enter()
+				.append("circle")
+					.attr("cx", function(d){ return x(d[0])})
+					.attr("cy", function(d){ return x(d[1])})
+					.attr("r", 3)
+					.style("fill", "#e41a1c");
+
+			$("#Mpoints").html(design["X"].length.toString());
+			$("#radius").html(design["radius"].toString());
+			$("#author").html(design["author"]);
+		}
+
+
+		d3.json("https://raw.githubusercontent.com/jeffrey-hokanson/ExperimentDesigns/master/designs/minimax/l2/square_0050.json")
+			.then(draw_design);
+
+	</script>
+</body>
+</html>
