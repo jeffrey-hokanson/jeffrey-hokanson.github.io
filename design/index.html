@@ -117,6 +117,28 @@
 			</tbody>
 		</table>
 
+		<h3 class="ui header">Background</h3>
+		<p>
+			A <em>minimax</em> design seeks
+			to minimize the maximum distance of any point
+			in the domain $\mathcal D = [0,1]^2$ 
+			to one of the points in the design $\mathcal X$:
+			$$
+				\min_{\mathcal X\in \mathcal D}
+				\max_{\mathbf y \in \mathcal D}
+				\min_{\mathbf x \in \mathcal X}
+				\| \mathbf x - \mathbf y \|_2.
+			$$
+ 			This is equivalent to 
+			a covering problem:
+			what is the smallest radius $\rho$
+			such that radius-$\rho$ disks  
+			centered at each $\mathbf x \in \mathcal X$
+			cover the domain $\mathcal D$.
+		</p>
+
+
+
 		<h3 class="ui header">Coordinates</h3>
 		<table class="ui small celled table" id = "coord">
 			<thead><tr>
