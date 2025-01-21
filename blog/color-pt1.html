@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Designing Optimal 3-bit Color Profiles, Pt 1 | Your awesome title</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Designing Optimal 3-bit Color Profiles, Pt 1" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Color themes are an incredibly personal choice. One place this comes up is in terminals, where the ASCII standards provide both 3-bit and 4-bit colors. Three-bit colors were in the original standard; four-bit colors added a “bright” code. As with all the standards, the good part is there are so many to choose from. Here we will be concerned with choosing the eight original three bit colors: black, red, green, blue, cyan, magenta, yellow, and white." />
+<meta property="og:description" content="Color themes are an incredibly personal choice. One place this comes up is in terminals, where the ASCII standards provide both 3-bit and 4-bit colors. Three-bit colors were in the original standard; four-bit colors added a “bright” code. As with all the standards, the good part is there are so many to choose from. Here we will be concerned with choosing the eight original three bit colors: black, red, green, blue, cyan, magenta, yellow, and white." />
+<link rel="canonical" href="https://hokanson.us//blog/color-pt1" />
+<meta property="og:url" content="https://hokanson.us//blog/color-pt1" />
+<meta property="og:site_name" content="Your awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-20T11:34:48-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Designing Optimal 3-bit Color Profiles, Pt 1" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-20T11:34:48-07:00","datePublished":"2025-01-20T11:34:48-07:00","description":"Color themes are an incredibly personal choice. One place this comes up is in terminals, where the ASCII standards provide both 3-bit and 4-bit colors. Three-bit colors were in the original standard; four-bit colors added a “bright” code. As with all the standards, the good part is there are so many to choose from. Here we will be concerned with choosing the eight original three bit colors: black, red, green, blue, cyan, magenta, yellow, and white.","headline":"Designing Optimal 3-bit Color Profiles, Pt 1","mainEntityOfPage":{"@type":"WebPage","@id":"https://hokanson.us//blog/color-pt1"},"url":"https://hokanson.us//blog/color-pt1"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://hokanson.us//blog/feed.xml" title="Your awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Your awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Designing Optimal 3-bit Color Profiles, Pt 1</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-01-20T11:34:48-07:00" itemprop="datePublished">Jan 20, 2025
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Color themes are an incredibly personal choice.
+One place this comes up is in terminals,
+where the ASCII standards provide both 
+<a href="https://en.wikipedia.org/wiki/ANSI_escape_code#3-bit_and_4-bit">3-bit and 4-bit colors</a>.
+Three-bit colors were in the original standard;
+four-bit colors added a “bright” code.
+As with all the standards, <a href="https://www.goodreads.com/quotes/589703-the-good-thing-about-standards-is-that-there-are-so">the good part is there are so many to choose from</a>.
+Here we will be concerned with choosing the eight original three bit colors:
+black, red, green, blue, cyan, magenta, yellow, and white.</p>
+
+<p>What makes choosing these eight colors hard is that each can be used
+for both the foreground and background.
+Thus, if we are not careful,
+there can be combinations of foreground and background colors
+that yield illegible combinations.
+For example, if we use the eight corners of the RGB color cube
+there are several pairings that are hard to distinguish: e.g.,
+yellow/white, cyan/white, and cyan/green.
+<img src="assets/color-pt1/colors_vga.png" alt="VGA colors" />
+<em>Colors from the 8 corners of the RGB color cube</em></p>
+
+<p>Goal will be to choose colors such that these pairings
+are easier to read.
+There are three components to this approach:</p>
+
+<ul>
+  <li>generate a list of 24-bit colors corresponding to a color name,</li>
+  <li>choose a metric for evaluating readability,</li>
+  <li>from the available colors for each color name, pick those that maximize readability.</li>
+</ul>
+
+<h2 id="picking-colors-corresponding-to-a-color-name">Picking Colors Corresponding to a Color Name</h2>
+<p>Suppose we want to choose a shade of red for terminal colors.
+What colors correspond to the name “red”?
+We could manually set some possible shades, 
+but there is an easier way.
+In 2010, Randall Munroe of <a href="https://xkcd.com">XKCD</a>
+conducted a <a href="https://blog.xkcd.com/2010/05/03/color-survey-results/">color survey</a>
+asking readers to name a presented color.
+We will determine what counts as “red” by querying
+this survey and pick shades of red that most readers can agree on.</p>
+
+<p>The challenge with this survey is there are only 5 million responses
+and 16 million 24-bit colors (8-bits in each of red, green, and blue).
+So there are many colors that don’t have names
+and even more that we are counting on a single reader to have named.
+To resolve this, we will use a kernel density estimate to infer what counts as red.
+However we need to be careful.
+Distances in the red, green, and blue channels don’t correspond well to what the human eye sees.
+So first we convert these colors into 
+the perceptually uniform <a href="https://en.wikipedia.org/wiki/Oklab_color_space">Oklab</a> color space.
+Then we construct a kernel density estimate using a fixed bandwidth
+and choose those colors of “red” that fall within 50% of the density.
+Doing so for each color yields the following map of allowable shades
+below, where we have marked the maxima of the density estimate with a white dot.
+<img src="assets/color-pt1/xkcd_colors.png" alt="VGA colors" />
+<em>Colors corresponding to red, green, blue, cyan, magenta, and yellow according to the XKCD color survey</em></p>
+
+<h2 id="evaluating-readability">Evaluating Readability</h2>
+<p>There are several standards for evaluating the readability 
+different text colors on different colored background.
+Here we use the <a href="https://github.com/Myndex/SAPC-APCA/tree/master">APCA</a> metric
+which performed better than the WCAG 2 contrast spec in my experiments.</p>
+
+<p>We have 56 color combinations to evaluate (8 foreground, 8 background, minus the eight of the same color).
+To provide an objective, 
+we use the sorted list of these scores.
+Then when comparing two potential color maps,
+we compare the first item in each list
+and the one with the larger value is best.
+If there is a tie, 
+we continue on to the next item until the tie is broken.</p>
+
+<h2 id="optimization">Optimization</h2>
+<p>Finding the best color map is a large scale, discrete optimization problem.
+Holding white and black fixed,
+we need to choose the best combination of six colors,
+where, for each, we have many possibilities</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>red</td>
+      <td>169013</td>
+    </tr>
+    <tr>
+      <td>blue</td>
+      <td>854973</td>
+    </tr>
+    <tr>
+      <td>green</td>
+      <td>776283</td>
+    </tr>
+    <tr>
+      <td>magenta</td>
+      <td>515204</td>
+    </tr>
+    <tr>
+      <td>cyan</td>
+      <td>345155</td>
+    </tr>
+    <tr>
+      <td>yellow</td>
+      <td>170906</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This yields 10<sup>33</sup> possibilities—far too many to evaluate.
+Moreover, due to our objective, we do not have derivatives.</p>
+
+<p>What I found most effective at solving this problem was a <a href="https://en.wikipedia.org/wiki/Pattern_search_(optimization)">pattern search</a>.
+For each channel (red, green, and blue) on each color,
+I tried multiple shifts holding the rest constant.
+I through out those that left the region of the color above.
+Then after no local improvement was obtained,
+I shrunk the shift size until there was no improvement possible shifting by one.</p>
+
+<h2 id="result">Result</h2>
+
+<p>Keeping the original color names,
+after optimization I got the following set of colors.
+<img src="assets/color-pt1/colors_opt6_default.png" alt="Optimal colors" />
+<em>Optimized colors</em></p>
+
+<p>This improves several of the color pairings—yellow/white, cyan/white, and cyan/green—
+but now magenta/cyan and magenta/red are more difficult to parse.</p>
+
+<p>Interestingly, the optimal colors do not appear on the boundaries of the color space.
+The shades found are marked with an “x” below
+<img src="assets/color-pt1/colors_opt6_space.png" alt="Optimal colors amongst possibilities" /></p>
+
+<h2 id="future-work">Future Work</h2>
+<p>This color scheme is not the prettiest: the yellow color is more of a puke.
+However, there is a clear avenue to improve this result:
+expand the possible colors for each color code.</p>
+
+<p>The other main question is expanding this to the bright colors as well,
+where we now need to optimize 16 different colors.</p>
+
+<p>Finally, we could consider more sophisticated algorithms
+for this optimization problem:
+e.g., a genetic algorithm.
+Genetic algorithms are notoriously difficult to tune, 
+so we leave this discussion until later.</p>
+
+  </div><a class="u-url" href="/blog/color-pt1" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Your awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Your awesome title</li><li><a class="u-email" href="mailto:your-email@example.com">your-email@example.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jekyll"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jekyll</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
