@@ -2,12 +2,14 @@
 layout: post
 title:  "Designing Optimal 3-bit Color Profiles, Pt 1"
 date:   2025-01-20 11:34:48 -0700
-categories: color
+permalink: color-pt1
+categories: 
 ---
 
 Color themes are an incredibly personal choice.
 One place this comes up is in terminals,
-where the ASCII standards provide both [3-bit and 4-bit colors](https://en.wikipedia.org/wiki/ANSI_escape_code#3-bit_and_4-bit).
+where the ASCII standards provide both 
+[3-bit and 4-bit colors](https://en.wikipedia.org/wiki/ANSI_escape_code#3-bit_and_4-bit).
 Three-bit colors were in the original standard;
 four-bit colors added a "bright" code.
 As with all the standards, [the good part is there are so many to choose from](https://www.goodreads.com/quotes/589703-the-good-thing-about-standards-is-that-there-are-so).
@@ -22,7 +24,7 @@ that yield illegible combinations.
 For example, if we use the eight corners of the RGB color cube
 there are several pairings that are hard to distinguish: e.g.,
 yellow/white, cyan/white, and cyan/green.
-![VGA colors](/assets/color-pt1/colors_vga.png)
+![VGA colors](assets/color-pt1/colors_vga.png)
 *Colors from the 8 corners of the RGB color cube*
 
 Goal will be to choose colors such that these pairings
@@ -57,7 +59,7 @@ Then we construct a kernel density estimate using a fixed bandwidth
 and choose those colors of "red" that fall within 50% of the density.
 Doing so for each color yields the following map of allowable shades
 below, where we have marked the maxima of the density estimate with a white dot.
-![VGA colors](/assets/color-pt1/xkcd_colors.png)
+![VGA colors](assets/color-pt1/xkcd_colors.png)
 *Colors corresponding to red, green, blue, cyan, magenta, and yellow according to the XKCD color survey*
 
 ## Evaluating Readability
@@ -104,7 +106,7 @@ I shrunk the shift size until there was no improvement possible shifting by one.
 
 Keeping the original color names,
 after optimization I got the following set of colors.
-![Optimal colors](/assets/color-pt1/colors_opt6_default.png)
+![Optimal colors](assets/color-pt1/colors_opt6_default.png)
 *Optimized colors*
 
 This improves several of the color pairings---yellow/white, cyan/white, and cyan/green---
@@ -113,7 +115,7 @@ but now magenta/cyan and magenta/red are more difficult to parse.
 
 Interestingly, the optimal colors do not appear on the boundaries of the color space.
 The shades found are marked with an "x" below
-![Optimal colors amongst possibilities](/assets/color-pt1/colors_opt6_space.png)
+![Optimal colors amongst possibilities](assets/color-pt1/colors_opt6_space.png)
 
 ## Future Work
 This color scheme is not the prettiest: the yellow color is more of a puke.
